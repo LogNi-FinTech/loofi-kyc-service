@@ -22,4 +22,11 @@ public class CustomerKycService {
         }
         return customerIdList;
     }
+
+    public Long saveRegistration(CustomerKyc customerKyc) {
+        if(customerKyc.getIdNumber() != null && customerKycRepository.existsByIdNumber(customerKyc.getIdNumber())){
+            return customerKycRepository.findByIdNumber(customerKyc.getIdNumber()).get().getId();
+        }
+        return customerKycRepository.save(customerKyc).getId();
+    }
 }

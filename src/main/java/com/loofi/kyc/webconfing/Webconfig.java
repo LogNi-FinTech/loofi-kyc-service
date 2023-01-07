@@ -24,7 +24,7 @@ public class Webconfig extends WebSecurityConfigurerAdapter implements WebMvcCon
 
 		http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
 		http.csrf().disable().exceptionHandling().and().authorizeRequests()
-				.antMatchers("/api/customerkyc", "/signup")
+				.antMatchers("/api/customerkyc/**", "/signup")
 				.permitAll()
 				.antMatchers(HttpMethod.POST,"/api/ledger-transaction").hasAnyRole("MAKER")
 				.antMatchers(HttpMethod.POST,"/api/registration").hasAnyRole("MAKER")
