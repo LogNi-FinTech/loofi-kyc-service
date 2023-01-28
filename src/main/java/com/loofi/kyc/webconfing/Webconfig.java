@@ -1,6 +1,7 @@
 package com.loofi.kyc.webconfing;
 
 
+import com.loofi.kyc.authentication.TokenFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -24,17 +26,15 @@ public class Webconfig extends WebSecurityConfigurerAdapter implements WebMvcCon
 
 		http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
 		http.csrf().disable().exceptionHandling().and().authorizeRequests()
-				.antMatchers("/api/customerkyc/**", "/signup")
-				.permitAll()
-				.antMatchers(HttpMethod.POST,"/api/ledger-transaction").hasAnyRole("MAKER")
-				.antMatchers(HttpMethod.POST,"/api/registration").hasAnyRole("MAKER")
-				.antMatchers(HttpMethod.GET, "/api/ledger-transaction").hasAnyRole("CHECKER", "MAKER")
-				.antMatchers(HttpMethod.GET, "/api/registration").hasAnyRole("CHECKER", "MAKER")
-				//.antMatchers(HttpMethod.GET, "/api/mfs-ledger-transaction/maker").hasAnyRole("")
-				.antMatchers(HttpMethod.POST, "/api/ledger-transaction/change-status").hasAnyRole("CHECKER")
-				.antMatchers(HttpMethod.PUT, "/api/registration/update/status").hasAnyRole("CHECKER")
-				.antMatchers(HttpMethod.POST, "/api/registration//multiple-registration").hasAnyRole("CHECKER")
-				// .and().httpBasic();
+				.antMatchers(HttpMethod.POST,"/api/customerkyc").hasAnyRole("CHECKER")
+				.antMatchers(HttpMethod.GET, "/api/customerkyc/**").hasAnyRole("CHECKER", "MAKER")
+				.antMatchers(HttpMethod.POST,"/api/customerkyc/multiple").hasAnyRole("MAKER")
 				.anyRequest().authenticated();
+		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+	}
+
+	@Bean
+	public TokenFilter authenticationJwtTokenFilter() {
+		return new TokenFilter();
 	}
 }
