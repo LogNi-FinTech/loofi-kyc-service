@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component 
@@ -21,17 +20,7 @@ public class JwtUtils {
 	@Value("${loofi.auth.secretKey:authentication_Secret&KEY_WILL_BE_STORED_SSM_KMS_HSM}")
 	private String secretKey;
 	private final int expireTime = 1000 * 60 * 60 * 5;
-	public String generateToken (String username, String roles, int userId) {
-		Claims claims = Jwts.claims().setSubject(username);
-		claims.put("userId", userId);
-		claims.put("role", roles);
-		return Jwts.builder()
-				.setClaims(claims)
-				.setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis()+ expireTime))
-				.signWith(SignatureAlgorithm.HS512, secretKey)
-				.compact();
-	}
+
 	public UserDetails parseToken(String token) {
 		try {
 			Claims body = Jwts.parser()

@@ -21,7 +21,7 @@ public class CustomerKyController {
     @Autowired
     private CustomerKycRepository customerKycRepository;
 
-    @PostMapping()
+    @PostMapping
     Long saveRegistration(@RequestBody CustomerKyc customerKyc){
         customerKyc.setId(null);
         Long CustomerKycId = customerKycService.saveRegistration(customerKyc);
@@ -54,7 +54,7 @@ public class CustomerKyController {
         else
             return ResponseEntity.status(HttpStatus.OK).body(null);
     }
-    @GetMapping()
+    @GetMapping
     ResponseEntity<List<CustomerKyc>> fetchCustomers(){
         List<CustomerKyc> customers = customerKycRepository.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(customers);

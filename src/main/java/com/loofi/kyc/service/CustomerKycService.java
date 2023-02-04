@@ -15,10 +15,10 @@ public class CustomerKycService {
     @Autowired
     private CustomerKycRepository customerKycRepository;
 
-    public List<Long> saveMultipleRegistration(List<CustomerKyc> customerKyc) {
+    public List<Long> saveMultipleRegistration(List<CustomerKyc> customerKycList) {
         List<Long> customerIdList = new ArrayList<>();
-        for (CustomerKyc cus : customerKyc){
-            customerIdList.add(customerKycRepository.save(cus).getId());
+        for (CustomerKyc customerKyc : customerKycList){
+            customerIdList.add(customerKycRepository.save(customerKyc).getId());
         }
         return customerIdList;
     }
