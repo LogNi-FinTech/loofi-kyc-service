@@ -27,6 +27,11 @@ public class CustomerKyController {
         Long CustomerKycId = customerKycService.saveRegistration(customerKyc);
         return CustomerKycId;
     }
+    Long saveRegistrationByCustomer(@RequestBody CustomerKyc customerKyc){
+        //customerKyc.setId(null);
+        Long CustomerKycId = customerKycService.saveRegistration(customerKyc);
+        return CustomerKycId;
+    }
     @PostMapping("/multiple")
     List<Long> saveMultipleRegistration(@RequestBody List<CustomerKyc> customerKycList){
         List<Long> idList = customerKycService.saveMultipleRegistration(customerKycList);

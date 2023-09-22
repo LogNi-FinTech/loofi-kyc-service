@@ -31,6 +31,7 @@ public class Webconfig extends WebSecurityConfigurerAdapter implements WebMvcCon
 				.antMatchers(HttpMethod.POST,"/api/customerkyc").hasAnyRole("CHECKER")
 				.antMatchers(HttpMethod.GET, "/api/customerkyc/**").hasAnyRole("CHECKER", "MAKER")
 				.antMatchers(HttpMethod.POST,"/api/customerkyc/multiple").hasAnyRole("MAKER")
+				.antMatchers(HttpMethod.POST,"/api/customerkyc/multiple").hasAnyRole("MAKER")
 				.anyRequest().authenticated();
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
