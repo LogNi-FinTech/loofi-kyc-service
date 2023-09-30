@@ -1,6 +1,7 @@
 package com.loofi.kyc.controller;
 
 import com.loofi.kyc.entity.CustomerKyc;
+import com.loofi.kyc.model.CustomerKycDto;
 import com.loofi.kyc.repository.CustomerKycRepository;
 import com.loofi.kyc.service.CustomerKycService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,13 @@ public class CustomerKyController {
     Long saveRegistration(@RequestBody CustomerKyc customerKyc){
         customerKyc.setId(null);
         Long CustomerKycId = customerKycService.saveRegistration(customerKyc);
+        return CustomerKycId;
+    }
+
+    @PostMapping("/registrationbycustomer")
+    Long saveRegistrationByCustomer(@RequestBody CustomerKycDto customerKycdto){
+        //customerKyc.setId(null);
+        Long CustomerKycId = customerKycService.saveRegistrationByCustomer(customerKycdto);
         return CustomerKycId;
     }
     @PostMapping("/multiple")

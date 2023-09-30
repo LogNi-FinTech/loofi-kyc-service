@@ -20,6 +20,9 @@ target/
 *.iml
 *.ipr
 .gradle
+.build
+build/
 
 ### VS Code ###
 .vscode/
+/build/

@@ -68,42 +68,6 @@ public class CustomerKyc {
     this.id = id;
   }
 
-  @Override
-  public String toString() {
-    return "CustomerKyc{" +
-            "id=" + id +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", idNumber='" + idNumber + '\'' +
-            ", idType=" + idType +
-            ", mobileNo='" + mobileNo + '\'' +
-            ", email='" + email + '\'' +
-            ", area='" + area + '\'' +
-            ", region='" + region + '\'' +
-            ", territory='" + territory + '\'' +
-            ", presentAddress='" + presentAddress + '\'' +
-            ", presentCity='" + presentCity + '\'' +
-            ", presentUnion='" + presentUnion + '\'' +
-            ", presentThana='" + presentThana + '\'' +
-            ", presentDistrict='" + presentDistrict + '\'' +
-            ", presentCountry='" + presentCountry + '\'' +
-            ", permanentAddress='" + permanentAddress + '\'' +
-            ", permanentCity='" + permanentCity + '\'' +
-            ", permanentUnion='" + permanentUnion + '\'' +
-            ", permanentThana='" + permanentThana + '\'' +
-            ", permanentDistrict='" + permanentDistrict + '\'' +
-            ", permanentCountry='" + permanentCountry + '\'' +
-            ", nomineeName='" + nomineeName + '\'' +
-            ", nomineeMobile='" + nomineeMobile + '\'' +
-            ", nomineeIdNumber='" + nomineeIdNumber + '\'' +
-            ", nomineeIdType=" + nomineeIdType +
-            ", nomineeAddress='" + nomineeAddress + '\'' +
-            ", nomineeRelation='" + nomineeRelation + '\'' +
-            ", createdBy='" + createdBy + '\'' +
-            ", lastModifiedBy='" + lastModifiedBy + '\'' +
-            '}';
-  }
-
   public String getFirstName() {
     return firstName;
   }
