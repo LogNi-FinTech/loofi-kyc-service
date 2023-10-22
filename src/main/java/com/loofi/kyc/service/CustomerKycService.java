@@ -101,6 +101,7 @@ public class CustomerKycService {
         customerKyc.setIdNumber(customerKycDto.getIdNumber());
         customerKyc.setIdType(customerKycDto.getIdType());
         customerKyc.setEmail(customerKycDto.getEmail());
+        customerKyc.setMobileNo(customerKycDto.getMobileNo());
         return customerKyc;
     }
 

@@ -21,4 +21,5 @@ public class CustomerKycDto {
     private IdType idType;
     private String email;
     private String credential;
+    private String mobileNo;
 }
